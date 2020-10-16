@@ -1,10 +1,21 @@
 import re
+import urllib
+import requests
 
-oriStr=str(open("./Level3Text.txt").read())
+baseURL="http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
 
-reStr=""
+startURL="http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=66081"
 
-for i in (re.findall('[^A-Z][A-Z][A-Z][A-Z]([a-z])[A-Z][A-Z][A-Z][^A-Z]',oriStr)):
-    reStr+=i
 
-print(reStr)
+while(True):
+    htmlText=requests.get(startURL).text
+
+    matchGroup=re.findall("[0-9]{1,5}",htmlText)
+
+    if(len(matchGroup)>0):
+        startURL=baseURL+matchGroup[-1]
+    else:
+        print(htmlText)
+        break
+
+
