@@ -1,9 +1,8 @@
-import requests
+import urllib.request
 
 url="http://www.pythonchallenge.com/pc/return/cave.jpg"
 
-r = requests.get(url)
+urllib.request.urlretrieve (url, url.split('/')[-1])
 
-print(r.headers.get('content-type'))
 
 #open(url.split('/')[-1], 'wb').write(r.content)
